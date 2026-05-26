@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #22c55e;
+  --color-primary-focus: #16a34a;
+  --color-dark: #0f172a;
+  --color-darker: #020617;
+  --color-light: #f8fafc;
+}
+
+/* ========== PREMIUM DARK FOOTBALL BACKGROUND ========== */
+body {
+  min-height: 100vh;
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #030712;
+  background-image:
+    /* Radial emerald glow top-left */
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(16, 185, 129, 0.18) 0%, transparent 60%),
+    /* Radial blue glow bottom-right */
+    radial-gradient(ellipse 70% 60% at 90% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 60%),
+    /* Subtle purple accent center */
+    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Animated pitch lines overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    /* Vertical center line */
+    linear-gradient(to right, transparent 49.9%, rgba(255,255,255,0.03) 49.9%, rgba(255,255,255,0.03) 50.1%, transparent 50.1%),
+    /* Horizontal center line */
+    linear-gradient(to bottom, transparent 49.9%, rgba(255,255,255,0.03) 49.9%, rgba(255,255,255,0.03) 50.1%, transparent 50.1%),
+    /* Fine grid */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      rgba(255, 255, 255, 0.02) 59px,
+      rgba(255, 255, 255, 0.02) 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 59px,
+      rgba(255, 255, 255, 0.02) 59px,
+      rgba(255, 255, 255, 0.02) 60px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating orbs animation */
+body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.07) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation: orb-float 12s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes orb-float {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-60px, 80px) scale(1.1); }
+  100% { transform: translate(30px, -40px) scale(0.95); }
+}
+
+/* ========== GLASSMORPHISM (dark-mode aware) ========== */
+.glass {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ========== CARD GLASS ========== */
+.card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+}
+
+/* ========== CUSTOM SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
+}
+
+/* ========== INPUT DARK STYLE ========== */
+input, select {
+  color-scheme: dark;
+}
+
+/* ========== ENSURE CONTENT IS ABOVE PSEUDO-ELEMENTS ========== */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
